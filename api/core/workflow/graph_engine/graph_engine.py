@@ -11,7 +11,6 @@ import threading
 import time
 from collections.abc import Callable, Generator, Mapping, Sequence
 from typing import Any, Optional, TypedDict
-from uuid import uuid4
 
 from core.app.entities.app_invoke_entities import InvokeFrom
 from core.workflow.entities import GraphRuntimeState
@@ -148,9 +147,6 @@ class GraphEngine:
         # Private map to track node retry attempts
         # Key: node_id, Value: retry_count
         self._node_retry_tracker: dict[str, int] = {}
-
-        # Manage all node's execution and give them same id.
-        self._node_execution_id_map: dict[str, str] = {}
 
         # Validate that all nodes share the same GraphRuntimeState instance
         # This is critical for thread-safe execution and consistent state management
@@ -300,14 +296,6 @@ class GraphEngine:
             event: The event to append to the collection.
         """
         with self._event_collector_lock:
-            node_id = event.node_id
-            if node_id in self._node_execution_id_map:
-                node_exec_id = self._node_execution_id_map[node_id]
-            else:
-                node_exec_id = str(uuid4())
-                self._node_execution_id_map[node_id] = node_exec_id
-            event.id = node_exec_id
-
             # Add event to collection
             self._collected_events.append(event)
 

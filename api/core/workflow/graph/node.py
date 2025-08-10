@@ -126,6 +126,8 @@ class Node:
                             node_run_result=event.run_result,
                         )
                         return
+                    if not event.in_iteration_id:
+                        event.id = node_execution_id
                     yield event
         except Exception as e:
             logger.exception("Node %s failed to run", self.node_id)
