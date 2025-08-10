@@ -8,9 +8,6 @@ from sqlalchemy.orm import Session
 from core.app.apps.advanced_chat.app_runner import AdvancedChatAppRunner
 from core.app.entities.app_invoke_entities import AdvancedChatAppGenerateEntity, InvokeFrom
 from core.variables import SegmentType
-from core.workflow.entities.graph_runtime_state import GraphRuntimeState
-from core.workflow.entities.variable_pool import VariablePool
-from core.workflow.system_variable import SystemVariable
 from factories import variable_factory
 from models import ConversationVariable, Workflow
 
@@ -137,7 +134,7 @@ class TestAdvancedChatAppRunnerConversationVariables:
 
             # Mock GraphRuntimeState to accept the variable pool
             mock_graph_runtime_state_class.return_value = MagicMock()
-            
+
             # Mock graph initialization
             mock_init_graph.return_value = MagicMock()
 
@@ -283,7 +280,7 @@ class TestAdvancedChatAppRunnerConversationVariables:
 
             # Mock GraphRuntimeState to accept the variable pool
             mock_graph_runtime_state_class.return_value = MagicMock()
-            
+
             # Mock graph initialization
             mock_init_graph.return_value = MagicMock()
 
@@ -414,7 +411,7 @@ class TestAdvancedChatAppRunnerConversationVariables:
 
             # Mock GraphRuntimeState to accept the variable pool
             mock_graph_runtime_state_class.return_value = MagicMock()
-            
+
             # Mock graph initialization
             mock_init_graph.return_value = MagicMock()
 

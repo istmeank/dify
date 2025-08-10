@@ -60,9 +60,6 @@ class GraphBaseNodeEvent(GraphEngineEvent):
 
 
 class BaseIterationEvent(GraphBaseNodeEvent):
-    iteration_node_data: Any = Field(
-        ..., description="node data"
-    )  # Type: BaseNodeData from core.workflow.nodes.base.entities
     parallel_mode_run_id: Optional[str] = None
     """iteratoin run in parallel mode run id"""
 
